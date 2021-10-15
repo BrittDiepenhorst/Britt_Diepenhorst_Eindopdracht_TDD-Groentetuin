@@ -1,3 +1,13 @@
+value A * value B = value C
+value D * value E = value F 
+
+C + F = result
+
+crop.crop.yield * crop.numCrops = value 1
+crop.crop.yield * crop.numCrops = value 2
+1 + 2 = result 
+
+
 Hoi Britt! Volgens mij slaat je vraag een deel van deze eindopdracht 
 de spijker op de kop. Je wilt hier dus in de functie checks gaan doen om 
 ervoor te zorgen dat de functie goed omgaat met verschillende inputs. 
