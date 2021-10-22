@@ -18,33 +18,34 @@ const getTotalYield = (crops) => {
     return total;
 };
 
+// #1 calculate the costs for a crop
 const getCostsForCrop = (crops) => {
-    const cropsArray = crops.crops;
-    const total = cropsArray.reduce((currentTotal, crop) => {
-        const costsForCrop = crop.crop.cost * crop.numCrops;
-        return costsForCrop + currentTotal;
-    }, 0)
-    return total;
+    const costsForCrop = crops.crop.cost * crops.numCrops;
+    return costsForCrop;
 };
 
+// #2 calculate the revenue for a crop (without environmental factors)
 const getRevenueForCrop = (crops) => {
-    const cropsArray = crops.crops;
-    const total = cropsArray.reduce((currentTotal, crop) => {
-        const revenueForCrop = crop.crop.salesprice * crop.numCrops;
-        return revenueForCrop + currentTotal;
-    }, 0)
-    return total;
+    const revenueForCrop = crops.crop.salesprice * crops.numCrops;
+    return revenueForCrop;
 };
 
+// #3 calculate the profit for a crop (without environmental factors)
 const getProfitForCrop = (crops) => {
+    const profitForCrop = getRevenueForCrop(crops) - getCostsForCrop(crops);
+    return profitForCrop;
+};
+
+// #4 calculate the profit for multiple crops (without environmental factors)
+const getTotalProfit = (crops) => {
     const cropsArray = crops.crops;
-    const total = cropsArray.reduce((currentTotal) => {
-        const profitForCrop = getRevenueForCrop(crops) - getCostsForCrop(crops);
+    const total = cropsArray.reduce((currentTotal, crop) => {
+        const profitForCrop = getProfitForCrop(crop);
+        console.log(profitForCrop);
         return profitForCrop + currentTotal;
     }, 0)
     return total;
-}
-
+};
 
 module.exports = {
     getYieldForPlant,
@@ -52,5 +53,6 @@ module.exports = {
     getTotalYield,
     getCostsForCrop,
     getRevenueForCrop,
-    getProfitForCrop
+    getProfitForCrop,
+    getTotalProfit
 };
