@@ -19,19 +19,38 @@ const getTotalYield = (crops) => {
 };
 
 const getCostsForCrop = (crops) => {
-    console.log(crops)
     const cropsArray = crops.crops;
-    console.log(cropsArray);
     const total = cropsArray.reduce((currentTotal, crop) => {
         const costsForCrop = crop.crop.cost * crop.numCrops;
         return costsForCrop + currentTotal;
     }, 0)
     return total;
+};
+
+const getRevenueForCrop = (crops) => {
+    const cropsArray = crops.crops;
+    const total = cropsArray.reduce((currentTotal, crop) => {
+        const revenueForCrop = crop.crop.salesprice * crop.numCrops;
+        return revenueForCrop + currentTotal;
+    }, 0)
+    return total;
+};
+
+const getProfitForCrop = (crops) => {
+    const cropsArray = crops.crops;
+    const total = cropsArray.reduce((currentTotal) => {
+        const profitForCrop = getRevenueForCrop(crops) - getCostsForCrop(crops);
+        return profitForCrop + currentTotal;
+    }, 0)
+    return total;
 }
+
 
 module.exports = {
     getYieldForPlant,
     getYieldForCrop,
     getTotalYield,
-    getCostsForCrop
+    getCostsForCrop,
+    getRevenueForCrop,
+    getProfitForCrop
 };
