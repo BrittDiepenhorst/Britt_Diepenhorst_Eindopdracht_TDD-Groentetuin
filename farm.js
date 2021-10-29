@@ -97,6 +97,12 @@ const getCostsForCrop = (crops) => {
 };
 
 // calculate the revenue for a crop (without environmental factors)
+// const getRevenueForCrop = (crops) => {
+//     const revenueForCrop = crops.crop.salesprice * crops.numCrops;
+//     return revenueForCrop;
+// };
+
+// calculate the revenue for a crop WITH environmental factors
 const getRevenueForCrop = (crops) => {
     const revenueForCrop = crops.crop.salesprice * crops.numCrops;
     return revenueForCrop;
