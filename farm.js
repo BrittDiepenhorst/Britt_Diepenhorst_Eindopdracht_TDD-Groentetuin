@@ -1,6 +1,5 @@
-// functions
-
-// calculate the yield for a plant
+// FUNCTIONS FARM
+// Calculate the yield for a plant
 const getYieldForPlant = (plant, environmentFactors) => {
     if (!environmentFactors) {
         return plant.yield;
@@ -54,31 +53,16 @@ const getYieldForPlant = (plant, environmentFactors) => {
     }
 
     const yieldForPlant = plant.yield * sun * rain * wind;
-    // console.log(yieldForPlant);
     return yieldForPlant;
 };
 
-// calculate the yield for a crop
-// const getYieldForCrop = (input) => {
-//     const yieldForCrop = (input.numCrops * input.crop.yield);
-//     return yieldForCrop;
-// };
-
+// Calculate the yield for a crop
 const getYieldForCrop = (input, environmentFactors) => {
     const yieldForCrop = (input.numCrops * getYieldForPlant(input.crop, environmentFactors));
     return yieldForCrop;
 };
 
-// calculate the total yield
-// const getTotalYield = (crops) => {
-//     const cropsArray = crops.crops;
-//     const total = cropsArray.reduce((currentTotal, crop) => {
-//         const totalYieldOneCrop = crop.crop.yield * crop.numCrops;
-//         return totalYieldOneCrop + currentTotal;
-//     }, 0)
-//     return total;
-// };
-
+// Calculate the total yield
 const getTotalYield = (crops, environmentFactors) => {
     const cropsArray = crops.crops;
     const total = cropsArray.reduce((currentTotal, crop) => {
@@ -88,39 +72,26 @@ const getTotalYield = (crops, environmentFactors) => {
     return total;
 };
 
-
-// calculate the costs for a crop
+// Calculate the costs for a crop
 const getCostsForCrop = (input) => {
     const costsForCrop = input.crop.cost * input.numCrops;
     return costsForCrop;
 };
 
-// calculate the revenue for a crop (without environmental factors)
-// const getRevenueForCrop = (crops) => {
-//     const revenueForCrop = crops.crop.salesPrice * crops.numCrops;
-//     return revenueForCrop;
-// };
-
-// calculate the revenue for a crop WITH environmental factors
+// Calculate the revenue for a crop WITH environmental factors
 const getRevenueForCrop = (input, environmentFactors) => {
     const YieldForCrop = getYieldForCrop(input, environmentFactors);
     const revenueForCrop = YieldForCrop * input.crop.salesPrice;
     return revenueForCrop;
 };
 
-// calculate the profit for a crop (without environmental factors)
-// const getProfitForCrop = (crops) => {
-//     const profitForCrop = getRevenueForCrop(crops) - getCostsForCrop(crops);
-//     return profitForCrop;
-// };
-
-// calculate the profit for a crop (without environmental factors)
+// Calculate the profit for a crop (WITH environmental factors)
 const getProfitForCrop = (input, environmentFactors) => {
     const profitForCrop = getRevenueForCrop(input, environmentFactors) - getCostsForCrop(input);
     return profitForCrop;
 };
 
-// calculate the profit for multiple crops (without environmental factors)
+// Calculate the profit for multiple crops (without environmental factors)
 const getTotalProfit = (input, environmentFactors) => {
     const cropsArray = input.crops;
     const total = cropsArray.reduce((currentTotal, input) => {

@@ -52,7 +52,7 @@ describe("getTotalYield", () => {
     });
 });
 
-// calculate the costs for a crop 
+// Calculate the costs for a crop 
 describe("getCostsForCrop", () => {
     test("getCostsForCrop", () => {
         const corn = {
@@ -65,7 +65,7 @@ describe("getCostsForCrop", () => {
     });
 });
 
-// calculate the revenue for a crop (without environmental factors)
+// Calculate the revenue for a crop (without environmental factors)
 describe("getRevenueForCrop (without environmental factors)", () => {
     test("getRevenueForCrop", () => {
         const corn = {
@@ -80,7 +80,7 @@ describe("getRevenueForCrop (without environmental factors)", () => {
     });
 });
 
-// calculate the profit for a crop (without environmental factors)
+// Calculate the profit for a crop (without environmental factors)
 describe("getProfitForCrop (without environmental factors)", () => {
     test("getProfitForCrop", () => {
         const corn = {
@@ -95,7 +95,7 @@ describe("getProfitForCrop (without environmental factors)", () => {
     });
 });
 
-// calculate the profit for multiple crops (without environmental factors)
+// Calculate the profit for multiple crops (without environmental factors)
 describe("getTotalProfit (without environmental factors)", () => {
     test("getTotalProfit", () => {
         const corn = {
@@ -118,7 +118,7 @@ describe("getTotalProfit (without environmental factors)", () => {
     });
 });
 
-// calculate the yield for a plant (WITH environmental factors)
+// Calculate the yield for a plant (WITH environmental factors)
 describe("getYieldForPlant WITH environment factors", () => {
     test("Get yield for plant WITH environment factors - sun low", () => {
         const corn = {
@@ -364,7 +364,7 @@ describe("getTotalYield WITH environment factors", () => {
     });
 });
 
-// calculate the revenue for a crop (WITH environmental factors)
+// Calculate the revenue for a crop (WITH environmental factors)
 describe("getRevenueForCrop (WITH environmental factors)", () => {
     test("getRevenueForCrop WITH environment factors - wind high", () => {
         const corn = {
@@ -389,7 +389,7 @@ describe("getRevenueForCrop (WITH environmental factors)", () => {
     });
 });
 
-// calculate the profit for a crop (WITH environmental factors)
+// Calculate the profit for a crop (WITH environmental factors)
 describe("getProfitForCrop (WITH environmental factors)", () => {
     test("getProfitForCrop WITH environment factors", () => {
         const corn = {
@@ -414,5 +414,42 @@ describe("getProfitForCrop (WITH environmental factors)", () => {
     });
 });
 
-
-// bereken de winst voor meerdere crops getTotalProfit, neem omgevingsfactoren mee in je berekening
+// Calculate the profit for multiple crops (WITH environmental factors)
+describe("getTotalProfit (WITH environmental factors)", () => {
+    test("getTotalProfit", () => {
+        const corn = {
+            name: "corn",
+            yield: 30,
+            cost: 1,
+            salesPrice: 2,
+            factors: {
+                wind: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+            },
+        };
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 4,
+            cost: 2,
+            salesPrice: 4,
+            factors: {
+                wind: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+            },
+        };
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+        ];
+        const environmentFactors = {
+            wind: "high",
+        };
+        expect(getTotalProfit({ crops }, environmentFactors)).toBe(157);
+    });
+});
