@@ -72,7 +72,7 @@ describe("getRevenueForCrop (without environmental factors)", () => {
             name: "corn",
             yield: 30,
             cost: 1,
-            salesprice: 2,
+            salesPrice: 2,
         };
 
         const crops = { crop: corn, numCrops: 5 };
@@ -87,7 +87,7 @@ describe("getProfitForCrop (without environmental factors)", () => {
             name: "corn",
             yield: 30,
             cost: 1,
-            salesprice: 2,
+            salesPrice: 2,
         };
 
         const crops = { crop: corn, numCrops: 5 };
@@ -102,13 +102,13 @@ describe("getTotalProfit (without environmental factors)", () => {
             name: "corn",
             yield: 3,
             cost: 1,
-            salesprice: 2,
+            salesPrice: 2,
         };
         const pumpkin = {
             name: "pumpkin",
             yield: 4,
             cost: 2,
-            salesprice: 4,
+            salesPrice: 4,
         };
         const crops = [
             { crop: corn, numCrops: 5 },
