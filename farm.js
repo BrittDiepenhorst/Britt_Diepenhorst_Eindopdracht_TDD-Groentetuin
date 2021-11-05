@@ -43,13 +43,13 @@ const getYieldForPlant = (plant, environmentFactors) => {
     } else {
         switch (environmentFactors.wind) {
             case "low":
-                wind = (100 - (Math.abs(plant.factors.wind.low))) / 100;
+                wind = (100 + (Math.abs(plant.factors.wind.low))) / 100;
                 break;
             case "medium":
                 if (plant.factors.wind.medium === 0) { wind = 1 } else { plant.factors.wind.medium / 100 };
                 break;
             case "high":
-                wind = (100 + (plant.factors.wind.high)) / 100;
+                wind = (100 - (plant.factors.wind.high)) / 100;
         }
     }
 
@@ -90,8 +90,8 @@ const getTotalYield = (crops, environmentFactors) => {
 
 
 // calculate the costs for a crop
-const getCostsForCrop = (crops) => {
-    const costsForCrop = crops.crop.cost * crops.numCrops;
+const getCostsForCrop = (input) => {
+    const costsForCrop = input.crop.cost * input.numCrops;
     return costsForCrop;
 };
 
@@ -103,11 +103,8 @@ const getCostsForCrop = (crops) => {
 
 // calculate the revenue for a crop WITH environmental factors
 const getRevenueForCrop = (input, environmentFactors) => {
-    console.log(input);
     const YieldForCrop = getYieldForCrop(input, environmentFactors);
-    console.log(YieldForCrop);
     const revenueForCrop = YieldForCrop * input.crop.salesPrice;
-    console.log(revenueForCrop);
     return revenueForCrop;
 };
 
@@ -118,16 +115,16 @@ const getRevenueForCrop = (input, environmentFactors) => {
 // };
 
 // calculate the profit for a crop (without environmental factors)
-const getProfitForCrop = (crops, environmentFactors) => {
-    const profitForCrop = getRevenueForCrop(input, environmentFactors) - getCostsForCrop(crops);
+const getProfitForCrop = (input, environmentFactors) => {
+    const profitForCrop = getRevenueForCrop(input, environmentFactors) - getCostsForCrop(input);
     return profitForCrop;
 };
 
 // calculate the profit for multiple crops (without environmental factors)
-const getTotalProfit = (crops) => {
-    const cropsArray = crops.crops;
-    const total = cropsArray.reduce((currentTotal, crop) => {
-        const profitForCrop = getProfitForCrop(crop);
+const getTotalProfit = (input, environmentFactors) => {
+    const cropsArray = input.crops;
+    const total = cropsArray.reduce((currentTotal, input) => {
+        const profitForCrop = getProfitForCrop(input, environmentFactors);
         return profitForCrop + currentTotal;
     }, 0)
     return total;
